@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Acesso ao Evento</title>
+    <style>
+        .pass { color: green; }
+        .fail { color: red; }
+        #sintomas{
+          width:400px;
+          height:40px;
+           
+        }
+    </style>
+</head>
+<body>
+<h2>Ficha de Triagem</h2>
+
+    <!-- Formulário para entrada de dados -->
+Nome do paciente: <input id="nome"><br><br>
+
+CPF:<input id="CPF"><br><br>
+Sintomas: <input id="sintomas"><br><br>
+<button onclick="verificarAcesso()">Verificar</button> <!---onclick é um manipulador de eventos-->
+<h3>Resultados:</h3>
+<div id="resultados"></div>
+
+    <script>
+        // Função para verificar ingresso e idade
+        function verificarAcesso() {
+            // Limpar resultados anteriores
+            const resultadosDiv = document.getElementById('resultados');
+            resultadosDiv.innerHTML = ''; // limpa o conteúdo anterior. 
+
+            // Obter valores de entrada
+            const nome = document.getElementById('nome').value;
+            const CPF=document.getElementById('CPF').value;
+            const sintomas = document.getElementById('sintomas').value;
+         
+
+            if (nome.length >= 3) {
+                resultadosDiv.innerHTML += '<p class="pass">✔️ Nome válido</p>';
+            } else {
+                resultadosDiv.innerHTML += '<p class="fail">❌ Nome inválido (mínimo 3 caracteres)</p>';
+            }
+            if(CPF.length===11){
+                resultadosDiv.innerHTML += '<p class="pass">✔️ CPF válido </p>';
+            } else{
+                resultadosDiv.innerHTML += '<p class="fail"> ❌ CPF inválido(quantidade errada de dígitos) </p>'
+            }
+         
+            if (sintomas.length >4 && sintomas.length <100) {
+                resultadosDiv.innerHTML += '<p class="pass">✔️ Quantidade de caracteres válidos</p>';
+            } else {
+                resultadosDiv.innerHTML += '<p class="fail">❌ Quantidade de caracteres inválidos</p>';
+            }
+            
+        }
+    </script>
+</body>
+</html>
